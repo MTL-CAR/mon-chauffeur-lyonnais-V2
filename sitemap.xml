@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.votre-domaine.fr/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.votre-domaine.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.votre-domaine.fr/en/"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.votre-domaine.fr/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.votre-domaine.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.votre-domaine.fr/en/"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.votre-domaine.fr/reservation.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.votre-domaine.fr/reservation.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.votre-domaine.fr/en/booking.html"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.votre-domaine.fr/en/booking.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.votre-domaine.fr/reservation.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.votre-domaine.fr/en/booking.html"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+</urlset>

@@ -1,0 +1,406 @@
+/* ==========================================================================
+   Mon Chauffeur Lyonnais — feuille de style principale
+   Palette : carbone, anthracite, or champagne · Polices : Marcellus, Figtree
+   ========================================================================== */
+
+/* ---------- 1. Jetons de design ---------- */
+:root {
+  --carbone: #0E0E10;
+  --anthracite: #1C1D21;
+  --graphite: #2A2C31;
+  --pierre: #8A8B8F;
+  --pierre-clair: #A9AAAE;
+  --ivoire: #F2EEE6;
+  --ivoire-ligne: #D8D2C4;
+  --ivoire-texte-2: #4E4F54;
+  --or: #B89B5E;
+  --or-clair: #D2B97F;
+  --or-fonce: #74602F;      /* or lisible sur fond ivoire (contraste AA) */
+  --erreur: #E8A39A;
+
+  --font-titre: 'Marcellus', Georgia, 'Times New Roman', serif;
+  --font-texte: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --conteneur: 1200px;
+  --gouttiere: 24px;
+  --section: clamp(72px, 9vw, 112px);
+}
+
+/* ---------- 2. Polices auto-hébergées (RGPD) ----------
+   Étape de mise en production (voir README) :
+   1. déposez les 3 fichiers .woff2 dans /assets/fonts/ ;
+   2. décommentez le bloc ci-dessous ;
+   3. retirez les 3 lignes Google Fonts du <head> de chaque page.
+@font-face {
+  font-family: 'Marcellus';
+  src: url('../fonts/marcellus-v13-latin-regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/figtree-v5-latin-regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/figtree-v5-latin-500.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+*/
+
+/* ---------- 3. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--carbone);
+  color: var(--ivoire);
+  font-family: var(--font-texte);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--or); }
+a:hover { color: var(--or-clair); }
+:focus-visible { outline: 2px solid var(--or); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--font-titre); font-weight: 400; margin: 0; line-height: 1.15; }
+p { margin: 0; }
+ul, ol, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.lien-evitement {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  background: var(--or); color: var(--carbone); padding: 10px 16px; text-decoration: none;
+}
+.lien-evitement:focus { top: 16px; }
+
+.conteneur { max-width: var(--conteneur); margin: 0 auto; padding: 0 var(--gouttiere); }
+.section { padding: var(--section) 0; border-bottom: 1px solid var(--graphite); }
+
+/* ---------- 4. Typographie ---------- */
+.surtitre {
+  font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 16px;
+}
+.titre-1 { font-size: clamp(42px, 5vw, 68px); line-height: 1.08; margin-bottom: 24px; }
+.titre-2 { font-size: clamp(32px, 3.4vw, 46px); margin-bottom: 20px; }
+.titre-3 { font-size: 22px; }
+.chapo { font-size: 18px; color: var(--pierre-clair); max-width: 540px; }
+.texte-2 { color: var(--pierre); font-size: 15px; }
+.filet { width: 40px; height: 1px; background: var(--or); border: 0; margin: 0 0 32px; }
+
+/* ---------- 5. Boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 13px 26px;
+  font-family: var(--font-texte); font-size: 15px; font-weight: 500; letter-spacing: 0.03em;
+  text-decoration: none; cursor: pointer; border: 1px solid transparent;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.btn-or { background: var(--or); color: var(--carbone); border-color: var(--or); }
+.btn-or:hover { background: var(--or-clair); border-color: var(--or-clair); color: var(--carbone); }
+.btn-contour { background: transparent; color: var(--or); border-color: var(--or); font-weight: 400; }
+.btn-contour:hover { background: var(--or); color: var(--carbone); }
+.btn-clair { background: transparent; color: var(--ivoire); border-color: var(--ivoire); font-weight: 400; }
+.btn-clair:hover { background: var(--ivoire); color: var(--carbone); }
+.btn-lien { background: none; border: 0; color: var(--pierre); padding: 0 4px; font-weight: 400; }
+.btn-lien:hover { color: var(--ivoire); }
+
+/* ---------- 6. En-tête ---------- */
+.entete {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(14, 14, 16, 0.96);
+  border-bottom: 1px solid var(--graphite);
+}
+.entete-int {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  min-height: 80px;
+}
+.marque { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ivoire); }
+.marque:hover { color: var(--ivoire); }
+.monogramme {
+  width: 42px; height: 42px; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--or); color: var(--or);
+  font-family: var(--font-titre); font-size: 22px;
+}
+.marque-nom { font-size: 12px; letter-spacing: 0.24em; line-height: 1.4; text-transform: uppercase; }
+.nav { display: flex; gap: 28px; font-size: 14px; }
+.nav a { color: var(--ivoire); text-decoration: none; }
+.nav a:hover { color: var(--or); }
+.entete-actions { display: flex; align-items: center; gap: 20px; }
+.langues { font-size: 13px; letter-spacing: 0.12em; color: var(--pierre); }
+.langues a { color: var(--pierre); text-decoration: none; }
+.langues a:hover { color: var(--ivoire); }
+.langues [aria-current] { color: var(--ivoire); }
+.tel { font-size: 14px; color: var(--ivoire); text-decoration: none; white-space: nowrap; }
+.btn-menu {
+  display: none; width: 48px; height: 48px; background: none; border: 1px solid var(--graphite);
+  color: var(--ivoire); cursor: pointer; align-items: center; justify-content: center;
+}
+
+@media (max-width: 1020px) {
+  .btn-menu { display: inline-flex; }
+  .nav, .tel { display: none; }
+  .entete.est-ouvert .nav {
+    display: flex; flex-direction: column; gap: 0;
+    position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--carbone); border-bottom: 1px solid var(--graphite);
+    padding: 8px var(--gouttiere) 24px;
+  }
+  .entete.est-ouvert .nav a { padding: 14px 0; border-top: 1px solid var(--graphite); font-size: 16px; }
+}
+@media (max-width: 560px) {
+  .marque-nom { display: none; }
+  .entete-actions { gap: 12px; }
+  .entete-actions .btn { padding: 12px 16px; }
+}
+
+/* ---------- 7. Accueil (hero) ---------- */
+.hero-int { display: flex; flex-wrap: wrap; gap: 64px; align-items: center; }
+.hero-texte { flex: 1 1 520px; min-width: 0; }
+.hero-visuel { flex: 1 1 400px; min-width: 0; }
+.hero .chapo { margin-bottom: 40px; }
+
+.estimation {
+  background: var(--anthracite); border: 1px solid var(--graphite); padding: 28px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
+}
+.estimation .btn { grid-column: 1 / -1; }
+.note-whatsapp { margin-top: 18px; font-size: 14px; color: var(--pierre); }
+
+/* ---------- 8. Champs de formulaire ---------- */
+.champ { display: flex; flex-direction: column; gap: 6px; }
+.champ > span, .legende {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pierre);
+}
+.champ input, .champ select, .champ textarea {
+  width: 100%; min-height: 48px; padding: 12px 14px;
+  background: var(--carbone); color: var(--ivoire);
+  border: 1px solid var(--graphite); border-radius: 0;
+  font-family: var(--font-texte); font-size: 16px; /* 16px : pas de zoom iOS */
+}
+.champ textarea { resize: vertical; min-height: 110px; }
+.champ input::placeholder, .champ textarea::placeholder { color: #6E6F74; }
+.champ input:focus, .champ select:focus, .champ textarea:focus { border-color: var(--or); outline: none; }
+.champ input[aria-invalid="true"] { border-color: var(--erreur); }
+.champ input[type="date"], .champ input[type="time"] { color-scheme: dark; }
+.erreur { font-size: 13px; color: var(--erreur); min-height: 0; }
+.case { display: flex; align-items: center; gap: 12px; min-height: 48px; font-size: 15px; cursor: pointer; }
+.case input { width: 20px; height: 20px; accent-color: var(--or); }
+
+/* ---------- 9. Emplacements photo ---------- */
+.photo {
+  background: var(--anthracite); border: 1px solid var(--graphite);
+  display: flex; align-items: flex-end; padding: 24px; overflow: hidden; position: relative;
+}
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-legende { font-size: 13px; color: var(--pierre); letter-spacing: 0.04em; position: relative; }
+.photo-hero { height: clamp(380px, 46vw, 560px); }
+
+/* ---------- 10. Engagements ---------- */
+.engagements { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; padding: 72px 0; }
+.engagement { display: flex; flex-direction: column; gap: 12px; }
+.engagement svg { width: 28px; height: 28px; stroke: var(--or); fill: none; stroke-width: 1.2; }
+.engagement h3 { font-size: 21px; }
+
+/* ---------- 11. Grilles et cartes ---------- */
+.entete-section { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px; }
+.entete-section .titre-2 { margin: 0; max-width: 660px; }
+.entete-section p { max-width: 380px; }
+.grille { display: grid; gap: 16px; }
+.grille-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grille-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.carte {
+  background: var(--anthracite); border: 1px solid var(--graphite);
+  padding: 32px 28px; display: flex; flex-direction: column; gap: 14px;
+}
+.carte-type { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pierre); }
+.carte h3 { font-size: 24px; }
+.carte .texte-2 { flex-grow: 1; font-size: 14px; }
+.prix { font-size: 14px; color: var(--pierre); }
+.prix strong { font-size: 26px; font-weight: 500; color: var(--ivoire); }
+.carte-lien {
+  color: var(--or); font-size: 14px; text-decoration: none;
+  border-top: 1px solid var(--graphite); padding-top: 14px; min-height: 44px;
+}
+.carte-lien:hover { color: var(--or-clair); }
+
+.formule { border: 1px solid var(--graphite); padding: 36px 32px; display: flex; flex-direction: column; gap: 10px; }
+.formule.est-mise-en-avant { border-color: var(--or); }
+.formule h3 { font-size: 26px; }
+.formule .prix-formule { margin-top: 12px; font-size: 26px; font-weight: 500; }
+.formule .prix-formule small { font-size: 14px; font-weight: 400; color: var(--pierre); }
+
+/* ---------- 12. Blocs deux colonnes ---------- */
+.duo { display: flex; flex-wrap: wrap; gap: 64px; align-items: stretch; }
+.duo > * { flex: 1 1 440px; min-width: 0; }
+.duo-centre { align-items: center; }
+.duo .chapo { margin-bottom: 32px; }
+.photo-route { min-height: 420px; }
+
+.liste-lignes li {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 14px 0; border-top: 1px solid var(--graphite); font-size: 15px;
+}
+.liste-lignes li:last-child { border-bottom: 1px solid var(--graphite); }
+.liste-lignes li span + span { color: var(--pierre); text-align: right; }
+.liste-2col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; margin-bottom: 32px; }
+.liste-2col li:last-child, .liste-2col li:nth-last-child(2) { border-bottom: 1px solid var(--graphite); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+
+.galerie { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.galerie .photo:first-child { grid-column: 1 / -1; height: 300px; }
+.galerie .photo { height: 220px; }
+
+.section-entreprises { background: var(--anthracite); }
+.atouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; }
+.atouts h3 { font-size: 20px; margin-bottom: 6px; }
+@media (max-width: 560px) {
+  .atouts, .liste-2col, .galerie { grid-template-columns: minmax(0, 1fr); }
+  .liste-2col li:nth-last-child(2) { border-bottom: 0; }
+}
+
+/* ---------- 13. Mot du chauffeur ---------- */
+.citation { max-width: 860px; margin: 0 auto; text-align: center; padding: clamp(88px, 10vw, 128px) var(--gouttiere); }
+.citation .filet { margin: 0 auto 40px; }
+.citation blockquote { margin: 0 0 36px; font-family: var(--font-titre); font-size: clamp(24px, 2.6vw, 34px); line-height: 1.45; }
+.citation figcaption { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pierre); }
+
+/* ---------- 14. Avis ---------- */
+.avis { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; }
+.avis > div { max-width: 640px; }
+.avis .titre-2 { font-size: 32px; margin-bottom: 12px; }
+
+/* ---------- 15. Section ivoire : tarifs et FAQ ---------- */
+.section-ivoire { background: var(--ivoire); color: var(--carbone); border-bottom: 0; }
+.section-ivoire .surtitre { color: var(--or-fonce); }
+.section-ivoire a { color: var(--or-fonce); }
+.conditions > div {
+  display: flex; justify-content: space-between; gap: 24px;
+  padding: 16px 0; border-top: 1px solid var(--ivoire-ligne); font-size: 15px;
+}
+.conditions > div:last-child { border-bottom: 1px solid var(--ivoire-ligne); }
+.conditions dd { color: var(--ivoire-texte-2); text-align: right; }
+.faq h3 { font-size: 26px; margin-bottom: 20px; }
+.faq details { border-top: 1px solid var(--ivoire-ligne); }
+.faq details:last-child { border-bottom: 1px solid var(--ivoire-ligne); }
+.faq summary {
+  list-style: none; cursor: pointer; padding: 18px 32px 18px 0; position: relative;
+  font-size: 16px; font-weight: 500;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; position: absolute; right: 4px; top: 16px; font-size: 20px; color: var(--or-fonce); }
+.faq details[open] summary::after { content: '−'; }
+.faq details p { padding: 0 0 18px; font-size: 15px; color: var(--ivoire-texte-2); }
+
+/* ---------- 16. Appel final ---------- */
+.appel { max-width: 860px; margin: 0 auto; text-align: center; padding: clamp(88px, 10vw, 128px) var(--gouttiere); }
+.appel .chapo { margin: 0 auto 40px; }
+.appel .actions { justify-content: center; }
+
+/* ---------- 17. Pied de page ---------- */
+.pied { border-top: 1px solid var(--graphite); }
+.pied-grille {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px;
+  padding: 64px 0 40px; font-size: 14px; color: var(--pierre);
+}
+.pied-grille .monogramme { margin-bottom: 16px; }
+.pied-titre { color: var(--ivoire); margin-bottom: 4px; }
+.pied-grille a { color: var(--pierre); text-decoration: none; }
+.pied-grille a:hover { color: var(--ivoire); }
+.pied-liens { display: flex; flex-direction: column; gap: 4px; }
+.pied-bas { border-top: 1px solid var(--graphite); padding: 20px 0 32px; font-size: 13px; color: var(--pierre); }
+
+/* ---------- 18. Tunnel de réservation ---------- */
+.resa { padding-top: 56px; padding-bottom: 96px; }
+.resa .titre-1 { font-size: clamp(32px, 3.4vw, 44px); margin-bottom: 32px; }
+.etapes { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-bottom: 48px; counter-reset: etape; }
+.etapes li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--pierre); }
+.etapes li::before {
+  counter-increment: etape; content: counter(etape);
+  width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--graphite);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 13px;
+}
+.etapes li.est-faite::before { border-color: var(--or); color: var(--or); }
+.etapes li[aria-current="step"] { color: var(--ivoire); }
+.etapes li[aria-current="step"]::before { background: var(--or); border-color: var(--or); color: var(--carbone); }
+
+.resa-int { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+.resa-form { flex: 999 1 560px; min-width: 0; background: var(--anthracite); border: 1px solid var(--graphite); padding: clamp(24px, 4vw, 36px); }
+.resa-recap { flex: 1 1 300px; min-width: 0; border: 1px solid var(--graphite); padding: 28px; position: sticky; top: 104px; }
+@media (max-width: 900px) { .resa-recap { position: static; } }
+
+.etape { border: 0; margin: 0; padding: 0; min-width: 0; }
+.etape + .etape { margin-top: 48px; }                    /* sans JavaScript : tout s'affiche */
+.js .etape + .etape { margin-top: 0; }
+.js .etape[hidden] { display: none; }
+.etape > legend { font-family: var(--font-titre); font-size: 24px; margin-bottom: 24px; padding: 0; }
+.bloc { margin-bottom: 28px; }
+.bloc:last-child { margin-bottom: 0; }
+.grille-champs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+.choix { display: grid; gap: 12px; }
+.choix-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.choix-auto { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.choix-liste { grid-template-columns: minmax(0, 1fr); }
+.option { position: relative; display: block; cursor: pointer; }
+.option input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.option > span {
+  display: block; min-height: 56px; padding: 14px 18px;
+  background: var(--carbone); border: 1px solid var(--graphite);
+  transition: border-color .2s;
+}
+.option small { display: block; font-size: 13px; color: var(--pierre); margin-top: 2px; }
+.option input:checked + span { border-color: var(--or); }
+.option input:focus-visible + span { outline: 2px solid var(--or); outline-offset: 2px; }
+.option:hover > span { border-color: #4A4C52; }
+.option input:checked + span:hover { border-color: var(--or); }
+
+.compteur { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.compteur button {
+  width: 48px; height: 48px; background: var(--carbone); border: 1px solid var(--graphite);
+  color: var(--ivoire); font-size: 20px; cursor: pointer;
+}
+.compteur output { font-size: 28px; font-weight: 500; min-width: 24px; text-align: center; }
+
+.encart-prix {
+  border: 1px solid var(--or); padding: 24px; margin-bottom: 28px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;
+}
+.encart-prix .surtitre { margin: 0; letter-spacing: 0.16em; }
+.encart-prix .montant { font-size: 34px; font-weight: 500; }
+
+.nav-etapes {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--graphite);
+}
+.nav-etapes .btn-or { margin-left: auto; }
+.mentions-resa { border-top: 1px solid var(--graphite); padding-top: 20px; margin-top: 28px; font-size: 14px; color: var(--pierre); }
+
+.recap-titre { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--or); margin-bottom: 20px; }
+.recap { font-size: 14px; }
+.recap > div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid var(--graphite); }
+.recap > div:last-child { border-bottom: 1px solid var(--graphite); }
+.recap dt { color: var(--pierre); }
+.recap dd { text-align: right; }
+.recap .recap-prix { font-size: 18px; font-weight: 500; }
+.recap-notes { margin-top: 20px; font-size: 13px; color: var(--pierre); display: flex; flex-direction: column; gap: 6px; }
+
+.confirmation { padding: 24px 0; display: flex; flex-direction: column; gap: 20px; }
+.confirmation h2 { font-size: 32px; }
+
+/* ---------- 19. Pages de texte (mentions légales, 404) ---------- */
+.page-texte { max-width: 760px; padding: 72px var(--gouttiere) 112px; margin: 0 auto; }
+.page-texte h1 { font-size: clamp(32px, 3.4vw, 44px); margin-bottom: 40px; }
+.page-texte h2 { font-size: 22px; margin: 40px 0 12px; }
+.page-texte p, .page-texte li { color: var(--pierre-clair); }
+.page-texte li { margin-bottom: 4px; }

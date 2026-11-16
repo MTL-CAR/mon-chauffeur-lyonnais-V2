@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Réserver votre trajet · Mon Chauffeur Lyonnais</title>
+  <meta name="description" content="Réservez votre chauffeur privé à Lyon : transfert aéroport, gare, mise à disposition ou longue distance. Tarif fixe garanti, confirmation personnelle.">
+  <link rel="canonical" href="https://www.votre-domaine.fr/reservation.html">
+  <link rel="alternate" hreflang="fr" href="https://www.votre-domaine.fr/reservation.html">
+  <link rel="alternate" hreflang="en" href="https://www.votre-domaine.fr/en/booking.html">
+  <meta name="theme-color" content="#0E0E10">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500&amp;family=Marcellus&amp;display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/booking.js" defer></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au formulaire</a>
+
+<header class="entete">
+  <div class="conteneur entete-int">
+    <a class="marque" href="./" aria-label="Mon Chauffeur Lyonnais, accueil">
+      <span class="monogramme" aria-hidden="true">M</span>
+      <span class="marque-nom">Mon Chauffeur<br>Lyonnais</span>
+    </a>
+    <div class="entete-actions">
+      <p class="langues"><span aria-current="true">FR</span> · <a href="en/booking.html" hreflang="en" lang="en">EN</a></p>
+      <a class="tel" href="tel:+33XXXXXXXXX">[TÉLÉPHONE]</a>
+      <a class="btn-lien" href="./" style="min-height: 44px; display: inline-flex; align-items: center; text-decoration: none;">← Accueil</a>
+    </div>
+  </div>
+</header>
+
+<main id="contenu" class="conteneur resa">
+  <h1 class="titre-1">Réserver votre trajet</h1>
+
+  <ol class="etapes js-seul" hidden aria-label="Étapes de la réservation">
+    <li aria-current="step">Trajet</li>
+    <li>Détails</li>
+    <li>Tarif et coordonnées</li>
+    <li>Confirmation</li>
+  </ol>
+
+  <div class="resa-int">
+    <!-- Remplacez VOTRE_ID par l'identifiant de votre formulaire Formspree (voir README) -->
+    <form id="form-resa" class="resa-form" action="https://formspree.io/f/VOTRE_ID" method="post" novalidate>
+      <input type="hidden" name="_subject" value="Nouvelle demande de réservation · site web">
+      <input type="hidden" name="langue" value="fr">
+      <input type="hidden" name="resume" id="champ-resume" value="">
+
+      <!-- Étape 1 : le trajet -->
+      <fieldset class="etape" data-etape="1">
+        <legend>Votre trajet</legend>
+
+        <div class="bloc">
+          <p class="legende" id="leg-prestation" style="margin-bottom: 12px;">Type de prestation</p>
+          <div class="choix choix-2" role="radiogroup" aria-labelledby="leg-prestation">
+            <label class="option"><input type="radio" name="prestation" value="transfert" checked><span>Transfert</span></label>
+            <label class="option"><input type="radio" name="prestation" value="mise-a-disposition"><span>Mise à disposition</span></label>
+          </div>
+        </div>
+
+        <div class="bloc" id="bloc-destination">
+          <p class="legende" id="leg-destination" style="margin-bottom: 12px;">Destination</p>
+          <div class="choix choix-auto" role="radiogroup" aria-labelledby="leg-destination">
+            <label class="option"><input type="radio" name="destination" value="aeroport" checked><span>Aéroport Saint-Exupéry<small>À partir de 70 € · 45 min d'attente</small></span></label>
+            <label class="option"><input type="radio" name="destination" value="part-dieu"><span>Gare Part-Dieu<small>À partir de 45 €</small></span></label>
+            <label class="option"><input type="radio" name="destination" value="perrache"><span>Gare Perrache<small>À partir de 45 €</small></span></label>
+            <label class="option"><input type="radio" name="destination" value="eurexpo"><span>Eurexpo<small>À partir de [PRIX] €</small></span></label>
+            <label class="option"><input type="radio" name="destination" value="longue-distance"><span>Longue distance ou autre<small>Ski, Annecy, Genève… sur devis</small></span></label>
+          </div>
+        </div>
+
+        <div class="bloc" id="bloc-duree" hidden>
+          <p class="legende" id="leg-duree" style="margin-bottom: 12px;">Durée</p>
+          <div class="choix choix-auto" role="radiogroup" aria-labelledby="leg-duree">
+            <label class="option"><input type="radio" name="duree" value="heure"><span>À l'heure<small>[PRIX] € / heure</small></span></label>
+            <label class="option"><input type="radio" name="duree" value="demi-journee" checked><span>Demi-journée<small>4 heures</small></span></label>
+            <label class="option"><input type="radio" name="duree" value="journee"><span>Journée<small>8 heures</small></span></label>
+          </div>
+        </div>
+
+        <div class="bloc grille-champs">
+          <label class="champ"><span>Adresse de prise en charge</span><input type="text" id="depart" name="depart" required autocomplete="street-address" placeholder="12 quai Saint-Antoine, Lyon 2e"></label>
+          <label class="champ" id="champ-arrivee" hidden><span>Destination</span><input type="text" id="arrivee" name="arrivee" placeholder="Courchevel 1850"></label>
+          <label class="champ"><span>Date</span><input type="date" id="date" name="date" required></label>
+          <label class="champ"><span>Heure de prise en charge</span><input type="time" id="heure" name="heure" required></label>
+          <label class="champ" id="champ-numero"><span id="libelle-numero">Numéro de vol</span><input type="text" id="numero" name="numero" placeholder="AF 7643" autocapitalize="characters"></label>
+        </div>
+        <p class="texte-2" id="note-suivi" style="font-size: 13px;">Je suis votre arrivée en temps réel et j'adapte l'heure de prise en charge en cas de retard.</p>
+      </fieldset>
+
+      <!-- Étape 2 : les détails -->
+      <fieldset class="etape" data-etape="2">
+        <legend>Les détails</legend>
+        <div class="bloc">
+          <p class="legende" style="margin-bottom: 12px;">Passagers</p>
+          <div class="compteur">
+            <button type="button" id="moins" class="js-seul" hidden aria-label="Retirer un passager">−</button>
+            <output id="affichage-passagers" aria-live="polite">1</output>
+            <button type="button" id="plus" class="js-seul" hidden aria-label="Ajouter un passager">+</button>
+            <input type="hidden" id="passagers" name="passagers" value="1">
+            <span class="texte-2">3 au maximum, le siège avant reste libre</span>
+          </div>
+        </div>
+        <div class="bloc grille-champs">
+          <label class="champ"><span>Bagages</span>
+            <select name="bagages">
+              <option>Bagage cabine uniquement</option>
+              <option>1 à 2 valises</option>
+              <option>3 valises et plus</option>
+              <option>Skis ou bagages volumineux</option>
+            </select>
+          </label>
+          <label class="case" style="align-self: end;"><input type="checkbox" name="siege_enfant" value="oui">Siège enfant (précisez l'âge dans le message)</label>
+        </div>
+        <div class="bloc">
+          <label class="champ"><span>Message pour le chauffeur (facultatif)</span><textarea name="message" rows="4" placeholder="Panneau au nom de M. Martin, arrêt rapide rue de la République"></textarea></label>
+        </div>
+      </fieldset>
+
+      <!-- Étape 3 : tarif et coordonnées -->
+      <fieldset class="etape" data-etape="3">
+        <legend>Tarif et coordonnées</legend>
+        <div class="encart-prix" aria-live="polite">
+          <div>
+            <p class="surtitre" id="prix-etiquette">Tarif fixe garanti</p>
+            <p class="texte-2" id="prix-note" style="font-size: 14px; margin-top: 4px;">À partir de ce montant depuis Lyon centre.</p>
+          </div>
+          <p class="montant" id="prix-montant">70 €</p>
+        </div>
+        <div class="bloc grille-champs">
+          <label class="champ"><span>Nom et prénom</span><input type="text" name="nom" required autocomplete="name" placeholder="Claire Martin"></label>
+          <label class="champ"><span>Téléphone</span><input type="tel" name="telephone" required autocomplete="tel" placeholder="06 12 34 56 78"></label>
+          <label class="champ"><span>E-mail</span><input type="email" name="email" required autocomplete="email" placeholder="claire.martin@societe.fr"></label>
+          <label class="champ"><span>Société (facultatif)</span><input type="text" name="societe" autocomplete="organization" placeholder="Pour la facture"></label>
+        </div>
+        <p class="texte-2" style="font-size: 13px;">Vos coordonnées servent uniquement à organiser votre trajet. Elles ne sont jamais transmises à des tiers. <a href="mentions-legales.html#confidentialite">Confidentialité</a></p>
+      </fieldset>
+
+      <!-- Étape 4 : confirmation -->
+      <fieldset class="etape" data-etape="4">
+        <legend>Confirmation</legend>
+        <div class="bloc" id="bloc-paiement">
+          <p class="legende" id="leg-paiement" style="margin-bottom: 12px;">Mode de paiement</p>
+          <div class="choix choix-liste" role="radiogroup" aria-labelledby="leg-paiement">
+            <label class="option"><input type="radio" name="paiement" value="cb" checked><span>Carte bancaire en ligne<small>Lien de paiement sécurisé envoyé avec la confirmation</small></span></label>
+            <label class="option"><input type="radio" name="paiement" value="tpe"><span>Carte à bord<small>Terminal sans contact, en fin de trajet</small></span></label>
+            <label class="option"><input type="radio" name="paiement" value="facture"><span>Facture mensuelle<small>Réservé aux comptes entreprises</small></span></label>
+          </div>
+        </div>
+        <p class="bloc chapo" id="note-devis" hidden style="font-size: 15px;">Je vous réponds personnellement sous 2 h avec un tarif fixe. Le paiement se fait seulement après votre accord sur le devis.</p>
+        <label class="case"><input type="checkbox" name="cgv" value="acceptees" required>J'accepte les&nbsp;<a href="mentions-legales.html#cgv">conditions générales de vente</a></label>
+        <div class="mentions-resa">
+          <p>Annulation gratuite jusqu'à 24 h avant la prise en charge.</p>
+          <p>Transport sur réservation préalable uniquement.</p>
+        </div>
+      </fieldset>
+
+      <div class="nav-etapes">
+        <button type="button" id="btn-precedent" class="btn btn-lien" hidden>← Étape précédente</button>
+        <button type="button" id="btn-suivant" class="btn btn-or js-seul" hidden>Continuer</button>
+        <noscript><button type="submit" class="btn btn-or">Envoyer ma réservation</button></noscript>
+      </div>
+
+      <!-- Écran final -->
+      <section id="confirmation" class="confirmation" hidden aria-live="polite">
+        <hr class="filet" style="margin: 0;">
+        <h2 id="confirmation-titre">Votre demande de réservation est envoyée.</h2>
+        <p class="chapo" id="confirmation-texte"></p>
+        <div class="actions">
+          <a id="lien-paiement" class="btn btn-or" href="#" hidden>Régler en ligne</a>
+          <a id="lien-whatsapp" class="btn btn-contour" href="#">Envoyer par WhatsApp</a>
+          <a id="lien-email" class="btn btn-clair" href="#">Envoyer par e-mail</a>
+          <a class="btn btn-lien" href="./">Retour à l'accueil</a>
+        </div>
+      </section>
+    </form>
+
+    <aside class="resa-recap" aria-label="Récapitulatif">
+      <p class="recap-titre">Récapitulatif</p>
+      <dl class="recap">
+        <div><dt>Prestation</dt><dd id="recap-prestation">Transfert</dd></div>
+        <div><dt id="recap-cle">Destination</dt><dd id="recap-choix">Aéroport Saint-Exupéry</dd></div>
+        <div><dt>Date</dt><dd id="recap-date">—</dd></div>
+        <div><dt>Passagers</dt><dd id="recap-passagers">1</dd></div>
+        <div><dt>Tarif</dt><dd id="recap-prix" class="recap-prix">70 €</dd></div>
+      </dl>
+      <ul class="recap-notes">
+        <li id="recap-attente">45 min d'attente incluses, vol suivi</li>
+        <li>Tarif fixe, sans supplément de circulation</li>
+        <li>Confirmation personnelle par e-mail ou WhatsApp</li>
+      </ul>
+      <p class="texte-2" style="font-size: 13px; margin-top: 24px;">Une question ? <a href="https://wa.me/33XXXXXXXXX">WhatsApp</a> ou <a href="tel:+33XXXXXXXXX">[TÉLÉPHONE]</a></p>
+    </aside>
+  </div>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied-bas">© 2026 Mon Chauffeur Lyonnais · SASU MTL CAR · SIREN 106 067 986 · 24 Avenue Joannès Masset, 69009 Lyon · <a href="mentions-legales.html" style="color: var(--pierre);">Mentions légales</a></div>
+</footer>
+</body>
+</html>
